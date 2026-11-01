@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" width="100%" height="120" fill="none">
+  <defs>
+    <linearGradient id="footer-bg-light" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+    <linearGradient id="footer-wave-light" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D97706" stop-opacity="0.1" />
+      <stop offset="40%" stop-color="#D97706" stop-opacity="0.8" />
+      <stop offset="70%" stop-color="#0284C7" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0284C7" stop-opacity="0.1" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    .f-quote-light { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif; font-size: 14px; font-weight: 600; fill: #0F172A; letter-spacing: 0.2px; }
+    .f-meta-light { font-family: "JetBrains Mono", monospace; font-size: 11px; fill: #64748B; letter-spacing: 0.8px; }
+    .f-dot-light { fill: #D97706; }
+  </style>
+
+  <!-- Border Card -->
+  <rect width="1200" height="120" rx="14" fill="url(#footer-bg-light)" stroke="#E2E8F0" stroke-width="1.2" />
+
+  <!-- Decaying Fourier Waveform Trace -->
+  <path d="M 60 60 Q 150 25, 240 60 T 420 60 T 600 60 T 780 60 T 960 60 L 1140 60" fill="none" stroke="url(#footer-wave-light)" stroke-width="1.8" />
+
+  <!-- Center Content Badge -->
+  <g transform="translate(600, 48)">
+    <rect x="-240" y="-18" width="480" height="36" rx="18" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" />
+    <circle cx="-215" cy="0" r="4" class="f-dot-light" />
+    <text x="-195" y="5" class="f-quote-light">Built with first-principles engineering and craft.</text>
+    <text x="180" y="5" text-anchor="middle" class="f-meta-light">// 2026</text>
+  </g>
+
+  <!-- Bottom Details -->
+  <text x="60" y="100" class="f-meta-light">SARANSH SINGH • B.TECH CSE (2023–2027) • JECRC UNIVERSITY</text>
+  <text x="1140" y="100" text-anchor="end" class="f-meta-light">JAVA 21 • SPRING BOOT • REACT • DSP</text>
+</svg>

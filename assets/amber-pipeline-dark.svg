@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 130" width="100%" height="130" fill="none">
+  <defs>
+    <linearGradient id="pipe-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#0B0F17" />
+    </linearGradient>
+    <linearGradient id="pipe-arr" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+  <style>
+    .step-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 700; fill: #F8FAFC; letter-spacing: 0.3px; }
+    .step-desc { font-family: "JetBrains Mono", monospace; font-size: 9.5px; fill: #94A3B8; }
+    .step-num { font-family: "JetBrains Mono", monospace; font-size: 10px; font-weight: 700; fill: #F59E0B; }
+    .arrow { stroke: #38BDF8; stroke-width: 1.5; stroke-dasharray: 3,2; }
+  </style>
+
+  <!-- Background card -->
+  <rect width="1100" height="130" rx="10" fill="url(#pipe-bg)" stroke="#1E293B" stroke-width="1.2" />
+
+  <!-- Stage 1: Ingestion & Downsampling -->
+  <g transform="translate(20, 18)">
+    <rect width="190" height="94" rx="8" fill="#111827" stroke="#334155" stroke-width="1" />
+    <circle cx="20" cy="22" r="8" fill="#1E293B" />
+    <text x="20" y="25" text-anchor="middle" class="step-num">01</text>
+    <text x="36" y="25" class="step-title">Audio Stream Ingestion</text>
+    <text x="14" y="48" class="step-desc">• Web Audio API &amp; WS</text>
+    <text x="14" y="65" class="step-desc">• 11,025 Hz Downsampling</text>
+    <text x="14" y="82" class="step-desc">• Polyphase FIR Filtering</text>
+  </g>
+
+  <!-- Arrow 1-2 -->
+  <path d="M 215 65 L 235 65" stroke="#38BDF8" stroke-width="2" marker-end="url(#arr-head)" />
+  <polygon points="237,65 231,61 231,69" fill="#38BDF8" />
+
+  <!-- Stage 2: Spectral Analysis -->
+  <g transform="translate(242, 18)">
+    <rect width="190" height="94" rx="8" fill="#111827" stroke="#334155" stroke-width="1" />
+    <circle cx="20" cy="22" r="8" fill="#1E293B" />
+    <text x="20" y="25" text-anchor="middle" class="step-num">02</text>
+    <text x="36" y="25" class="step-title">Radix-2 FFT &amp; STFT</text>
+    <text x="14" y="48" class="step-desc">• Cooley–Tukey FFT Engine</text>
+    <text x="14" y="65" class="step-desc">• Hann Window Spectral Slices</text>
+    <text x="14" y="82" class="step-desc">• Frequency Bin Decomposition</text>
+  </g>
+
+  <!-- Arrow 2-3 -->
+  <polygon points="457,65 451,61 451,69" fill="#38BDF8" />
+  <line x1="435" y1="65" x2="455" y2="65" stroke="#38BDF8" stroke-width="2" />
+
+  <!-- Stage 3: Constellation & Hash -->
+  <g transform="translate(462, 18)">
+    <rect width="190" height="94" rx="8" fill="#111827" stroke="#334155" stroke-width="1" />
+    <circle cx="20" cy="22" r="8" fill="#1E293B" />
+    <text x="20" y="25" text-anchor="middle" class="step-num">03</text>
+    <text x="36" y="25" class="step-title">Constellation Hashing</text>
+    <text x="14" y="48" class="step-desc">• Local Magnitude Peaks</text>
+    <text x="14" y="65" class="step-desc">• Target-Zone Point Pairing</text>
+    <text x="14" y="82" class="step-desc">• 32-Bit Bitpacked Hashes</text>
+  </g>
+
+  <!-- Arrow 3-4 -->
+  <polygon points="677,65 671,61 671,69" fill="#F59E0B" />
+  <line x1="655" y1="65" x2="675" y2="65" stroke="#F59E0B" stroke-width="2" />
+
+  <!-- Stage 4: Index Retrieval -->
+  <g transform="translate(682, 18)">
+    <rect width="185" height="94" rx="8" fill="#111827" stroke="#334155" stroke-width="1" />
+    <circle cx="20" cy="22" r="8" fill="#1E293B" />
+    <text x="20" y="25" text-anchor="middle" class="step-num">04</text>
+    <text x="36" y="25" class="step-title">PostgreSQL Index</text>
+    <text x="14" y="48" class="step-desc">• B-tree Hash Inverted Index</text>
+    <text x="14" y="65" class="step-desc">• Low-Latency Sub-Query</text>
+    <text x="14" y="82" class="step-desc">• Candidate Track Retrieval</text>
+  </g>
+
+  <!-- Arrow 4-5 -->
+  <polygon points="892,65 886,61 886,69" fill="#F59E0B" />
+  <line x1="870" y1="65" x2="890" y2="65" stroke="#F59E0B" stroke-width="2" />
+
+  <!-- Stage 5: Time Offset Alignment -->
+  <g transform="translate(897, 18)">
+    <rect width="183" height="94" rx="8" fill="#111827" stroke="#334155" stroke-width="1" />
+    <circle cx="20" cy="22" r="8" fill="#1E293B" />
+    <text x="20" y="25" text-anchor="middle" class="step-num">05</text>
+    <text x="36" y="25" class="step-title">Histogram Matching</text>
+    <text x="14" y="48" class="step-desc">• Offset Delta Clustering</text>
+    <text x="14" y="65" class="step-desc">• Coherence Peak Scoring</text>
+    <text x="14" y="82" class="step-desc">• False-Positive Rejection</text>
+  </g>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 56" width="100%" height="56" fill="none">
+  <defs>
+    <linearGradient id="line-grad-proj" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.9" />
+      <stop offset="35%" stop-color="#F59E0B" stop-opacity="0.6" />
+      <stop offset="70%" stop-color="#334155" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#1E293B" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <style>
+    .sec-num { font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 700; fill: #38BDF8; letter-spacing: 1.5px; }
+    .sec-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif; font-size: 20px; font-weight: 700; fill: #F8FAFC; letter-spacing: -0.3px; }
+    .sec-sub { font-family: "JetBrains Mono", monospace; font-size: 11px; fill: #64748B; letter-spacing: 0.5px; }
+  </style>
+  <!-- Node / Badge -->
+  <rect x="0" y="10" width="36" height="36" rx="8" fill="#111827" stroke="#1E293B" stroke-width="1.2" />
+  <circle cx="18" cy="28" r="4.5" fill="#38BDF8" />
+  <circle cx="18" cy="28" r="8" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.3" />
+
+  <!-- Title & Index -->
+  <text x="50" y="24" class="sec-num">02 / ARCHITECTURE</text>
+  <text x="50" y="44" class="sec-title">Featured Projects</text>
+  <text x="245" y="44" class="sec-sub">// DSP, PLATFORM SYSTEMS &amp; INTERPRETERS</text>
+
+  <!-- Divider Line -->
+  <line x1="580" y1="38" x2="890" y2="38" stroke="url(#line-grad-proj)" stroke-width="1.5" />
+</svg>

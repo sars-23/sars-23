@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="100%" height="300" fill="none">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F17" />
+      <stop offset="60%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <!-- Accent Gradients -->
+    <linearGradient id="amber-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+
+    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#60A5FA" />
+    </linearGradient>
+
+    <linearGradient id="spectral-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.2" />
+      <stop offset="40%" stop-color="#38BDF8" stop-opacity="0.5" />
+      <stop offset="85%" stop-color="#F59E0B" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#FCD34D" stop-opacity="1" />
+    </linearGradient>
+
+    <linearGradient id="sine-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.1" />
+      <stop offset="35%" stop-color="#38BDF8" stop-opacity="0.8" />
+      <stop offset="70%" stop-color="#F59E0B" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.2" />
+    </linearGradient>
+
+    <radialGradient id="glow-amber" cx="80%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="glow-blue" cx="30%" cy="80%" r="40%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0" />
+    </radialGradient>
+
+    <pattern id="dot-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="1" fill="#334155" fill-opacity="0.35" />
+    </pattern>
+  </defs>
+
+  <style>
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, Arial, sans-serif; font-weight: 800; font-size: 42px; fill: #F8FAFC; letter-spacing: -0.5px; }
+    .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, Arial, sans-serif; font-weight: 500; font-size: 17px; fill: #94A3B8; }
+    .badge-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, Arial, sans-serif; font-weight: 600; font-size: 11px; fill: #94A3B8; letter-spacing: 1.2px; }
+    .tag-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, Arial, sans-serif; font-weight: 600; font-size: 12px; fill: #E2E8F0; }
+    .mono-caption { font-family: "JetBrains Mono", "SF Mono", Consolas, Menlo, Monaco, monospace; font-size: 10px; fill: #64748B; letter-spacing: 0.5px; }
+  </style>
+
+  <!-- Container Base -->
+  <rect width="1200" height="300" rx="16" fill="url(#bg-grad)" stroke="#1E293B" stroke-width="1.5" />
+  
+  <!-- Subtle Dot Grid Background -->
+  <rect width="1200" height="300" rx="16" fill="url(#dot-grid)" />
+  
+  <!-- Ambient Atmospheric Glows -->
+  <circle cx="950" cy="100" r="240" fill="url(#glow-amber)" />
+  <circle cx="200" cy="240" r="200" fill="url(#glow-blue)" />
+
+  <!-- Acoustic Spectrum & FFT Constellation Graphic (Right Panel) -->
+  <g transform="translate(730, 25)">
+    <!-- Visual Enclosure Card -->
+    <rect x="0" y="0" width="410" height="250" rx="12" fill="#0D131F" fill-opacity="0.8" stroke="#1E293B" stroke-width="1" />
+    
+    <!-- Coordinate Grid Lines -->
+    <line x1="30" y1="210" x2="385" y2="210" stroke="#334155" stroke-width="1" stroke-opacity="0.6" />
+    <line x1="30" y1="150" x2="385" y2="150" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.3" />
+    <line x1="30" y1="90" x2="385" y2="90" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.3" />
+    <line x1="30" y1="35" x2="385" y2="35" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3" stroke-opacity="0.3" />
+
+    <!-- Technical Labels -->
+    <text x="30" y="24" class="mono-caption">ACOUSTIC CONSTELLATION &amp; SPECTRAL BINS</text>
+    <text x="385" y="24" text-anchor="end" class="mono-caption">RADIX-2 FFT // 11,025 Hz</text>
+
+    <!-- Discrete FFT Spectrum Bars -->
+    <rect x="42" y="165" width="5" height="45" rx="1" fill="url(#spectral-grad)" />
+    <rect x="53" y="145" width="5" height="65" rx="1" fill="url(#spectral-grad)" />
+    <rect x="64" y="110" width="5" height="100" rx="1" fill="url(#spectral-grad)" />
+    <rect x="75" y="80" width="5" height="130" rx="1" fill="url(#spectral-grad)" />
+    <rect x="86" y="125" width="5" height="85" rx="1" fill="url(#spectral-grad)" />
+    <rect x="97" y="155" width="5" height="55" rx="1" fill="url(#spectral-grad)" />
+    <rect x="108" y="95" width="5" height="115" rx="1" fill="url(#spectral-grad)" />
+    <rect x="119" y="60" width="5" height="150" rx="1" fill="url(#spectral-grad)" />
+    <rect x="130" y="105" width="5" height="105" rx="1" fill="url(#spectral-grad)" />
+    <rect x="141" y="140" width="5" height="70" rx="1" fill="url(#spectral-grad)" />
+    <rect x="152" y="170" width="5" height="40" rx="1" fill="url(#spectral-grad)" />
+
+    <!-- Constellation Target Graph Nodes & Combinatorial Pairing Lines -->
+    <!-- Anchor Node A -->
+    <circle cx="195" cy="115" r="5" fill="#F59E0B" />
+    <circle cx="195" cy="115" r="9" stroke="#F59E0B" stroke-width="1.5" stroke-opacity="0.4" />
+    
+    <!-- Target Nodes -->
+    <circle cx="265" cy="65" r="4.5" fill="#38BDF8" />
+    <circle cx="310" cy="120" r="4.5" fill="#38BDF8" />
+    <circle cx="280" cy="170" r="4" fill="#38BDF8" />
+    <circle cx="355" cy="85" r="5" fill="#F59E0B" />
+    <circle cx="355" cy="85" r="9" stroke="#F59E0B" stroke-width="1.5" stroke-opacity="0.4" />
+    
+    <!-- Hash Target Pairing Vectors (Combinatorial Hashing) -->
+    <line x1="195" y1="115" x2="265" y2="65" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3,2" stroke-opacity="0.8" />
+    <line x1="195" y1="115" x2="310" y2="120" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3,2" stroke-opacity="0.8" />
+    <line x1="195" y1="115" x2="280" y2="170" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3,2" stroke-opacity="0.8" />
+    <line x1="265" y1="65" x2="355" y2="85" stroke="#38BDF8" stroke-width="1.2" stroke-opacity="0.6" />
+    <line x1="310" y1="120" x2="355" y2="85" stroke="#38BDF8" stroke-width="1.2" stroke-opacity="0.6" />
+
+    <!-- Continuous STFT Phase Waveform Curve -->
+    <path d="M 30 185 Q 85 45, 140 180 T 250 140 T 325 80 T 385 150" fill="none" stroke="url(#sine-grad)" stroke-width="2.5" />
+    
+    <!-- Live Match Vector Hash Tag -->
+    <rect x="235" y="218" width="150" height="20" rx="5" fill="#1E293B" fill-opacity="0.9" stroke="#334155" stroke-width="0.8" />
+    <text x="310" y="232" text-anchor="middle" class="mono-caption" fill="#38BDF8">HASH: [F1:F2:ΔT] 32-BIT</text>
+  </g>
+
+  <!-- Left Content Column -->
+  <!-- Top Academic Pill Badge -->
+  <g transform="translate(60, 42)">
+    <rect x="0" y="0" width="375" height="28" rx="14" fill="#1E293B" fill-opacity="0.75" stroke="#334155" stroke-width="1" />
+    <!-- Glowing Status Indicator -->
+    <circle cx="16" cy="14" r="4.5" fill="#10B981" />
+    <circle cx="16" cy="14" r="7" stroke="#10B981" stroke-width="1" stroke-opacity="0.5" />
+    <text x="32" y="18" class="badge-text">B.TECH CSE (2023–2027) • JECRC UNIVERSITY</text>
+  </g>
+
+  <!-- Main Identity Header -->
+  <text x="60" y="118" class="title">Saransh Singh</text>
+  
+  <!-- Subtitle -->
+  <text x="60" y="152" class="subtitle">Computer Science Undergraduate | Java &amp; Full-Stack Engineering</text>
+
+  <!-- Core Competencies / Technical Focus Tags -->
+  <g transform="translate(60, 185)">
+    <!-- Tag 1: Systems & Architecture -->
+    <rect x="0" y="0" width="170" height="32" rx="8" fill="#1E293B" fill-opacity="0.8" stroke="#334155" stroke-width="1" />
+    <circle cx="16" cy="16" r="4" fill="#F59E0B" />
+    <text x="28" y="21" class="tag-text">Systems &amp; Backends</text>
+
+    <!-- Tag 2: Digital Signal Processing -->
+    <rect x="182" y="0" width="180" height="32" rx="8" fill="#1E293B" fill-opacity="0.8" stroke="#334155" stroke-width="1" />
+    <circle cx="198" cy="16" r="4" fill="#38BDF8" />
+    <text x="210" y="21" class="tag-text">Signal Processing &amp; FFT</text>
+
+    <!-- Tag 3: Compilers & Core DS -->
+    <rect x="374" y="0" width="166" height="32" rx="8" fill="#1E293B" fill-opacity="0.8" stroke="#334155" stroke-width="1" />
+    <circle cx="390" cy="16" r="4" fill="#10B981" />
+    <text x="402" y="21" class="tag-text">Language Interpreters</text>
+  </g>
+
+  <!-- Bottom Terminal Accent Bar -->
+  <g transform="translate(60, 246)">
+    <text x="0" y="14" class="mono-caption" fill="#64748B">STACK &gt;&gt; </text>
+    <text x="60" y="14" class="mono-caption" fill="#94A3B8">Java 21 • Spring Boot 3 • React 19 • TypeScript • PostgreSQL • Docker</text>
+  </g>
+</svg>
