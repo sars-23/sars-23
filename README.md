@@ -29,6 +29,8 @@ I am a Computer Science undergraduate at **JECRC University (2023–2027)** focu
 Rather than treating modern frameworks and external libraries as opaque abstractions, I enjoy deconstructing complex systems to their mathematical and computational foundations. Whether engineering a custom Cooley–Tukey Fast Fourier Transform (FFT) for audio fingerprinting, implementing a handwritten recursive-descent compiler interpreter, or structuring isolated container execution sandboxes, my goal is always the same: **understand the system from first principles and build robust, deterministic software.**
 
 ```java
+import java.util.List;
+
 public record DeveloperIdentity(
     String engineer,
     String academicDegree,
@@ -74,14 +76,14 @@ public record DeveloperIdentity(
 
 <br>
 
-Amber is a distributed acoustic fingerprinting and audio identification system capable of recognizing music in real time through a browser microphone or uploaded audio file. Instead of delegating recognition to proprietary cloud APIs, Amber executes an end-to-end discrete digital signal processing pipeline:
+Amber is a full-stack acoustic fingerprinting and audio identification system capable of recognizing music in real time through a browser microphone or uploaded audio file. Instead of delegating recognition to proprietary cloud APIs, Amber executes an end-to-end discrete digital signal processing pipeline:
 
 * **Custom Radix-2 Cooley–Tukey FFT & STFT Framing:** Transforms incoming continuous time-domain PCM samples into frequency-domain spectral slices using sliding Hann windows, decomposing raw audio across discrete frequency bins.
 * **Combinatorial Constellation Hashing:** Extracts local magnitude peaks within logarithmic frequency intervals and generates compact 32-bit hashes `[f1:f2:Δt]` by pairing anchor points with target peaks inside a forward time-frequency bounding box.
-* **Inverted B-Tree Candidate Retrieval:** PostgreSQL candidate retrieval evaluates fingerprint hashes against reference indexes, drastically reducing the search space across indexed tracks.
-* **Time-Coherent Offset Histogram Matching:** Computes offset deltas `(t_track - t_query)` across matched hashes. A true positive manifests as a sharp statistical peak in the offset histogram, isolating signal from ambient acoustic noise.
+* **PostgreSQL B-tree Indexed Candidate Retrieval:** Evaluates query fingerprint hashes against indexed reference fingerprints via PostgreSQL B-tree lookups to retrieve candidate track recordings with low latency.
+* **Time-Coherent Offset Histogram Matching & Five-Gate Acceptance:** Computes offset deltas `(t_track - t_query)` across candidate hashes. Production recognition isolates true matches via an offset histogram coherence peak subjected to a strict five-gate acceptance pipeline (minimum peak votes, coherence score, coherence ratio, ambiguity margin, and confidence thresholds) to eliminate false positives.
 * **Browser Microphone Streaming via AudioWorklet:** Continuously samples live input at 11,025 Hz using a native client-side AudioWorklet downsampler with polyphase FIR filtering and WebSockets transport.
-* **Deterministic Noise Lab Benchmark:** An in-memory evaluation lab that injects synthetic white noise, frequency attenuation, and temporal jitter to rigorously test false-positive rejection thresholds.
+* **Isolated In-Memory Noise Lab Benchmark:** Features a self-contained in-memory benchmarking suite that injects deterministic synthetic noise (additive Gaussian noise at configurable SNR dB levels) to evaluate algorithmic degradation in isolation. Unlike the production matcher, the Noise Lab evaluator runs entirely without database persistence or the five-gate production acceptance pipeline, providing focused unit-level DSP diagnostics.
 
 <p align="left">
   <a href="https://amber-frontend-w78m.onrender.com"><b>🌐 Live Production Application</b></a> &nbsp;•&nbsp;
@@ -124,11 +126,11 @@ A developer practice platform designed to evaluate and guide programmatic proble
 
 > **Object-Oriented Design & Desktop Application** • *Java • Java Swing • In-Memory Data Structures*
 
-A responsive desktop CRUD management application emphasizing decoupled UI architecture and efficient data indexing:
+A desktop CRUD management application built with Java Swing and custom in-memory data structures:
 
-* **$O(1)$ In-Memory Indexing:** Backed by a `LinkedHashMap` to guarantee constant-time record retrieval, updates, and deletions while strictly preserving insertion order.
-* **Input Validation Engine:** Enforces validation rules for emails, regional phone numbers, and street addresses with real-time UI feedback.
-* **Layered Architecture:** Separates Java Swing event dispatch threads from the underlying in-memory storage manager.
+* **Average $O(1)$ In-Memory Indexing:** Backed by a `LinkedHashMap<String, Contact>` providing average $O(1)$ key lookup, insertion, update, and deletion operations while preserving the user's insertion order.
+* **Field Validation Logic:** Validates required non-empty first and last names, enforces standard email format via regex, and verifies that phone numbers contain at least 10 digits. Addresses are optional and trimmed without custom format validation.
+* **Desktop Swing Architecture:** Encapsulates business models (`Contact`, `ContactManager`) cleanly from the Swing graphical interface (`ContactManagementGUI`).
 
 <p align="left">
   <a href="https://github.com/sars-23/Java_Contact_Management_System"><b>📦 GitHub Source Repository</b></a>
@@ -140,13 +142,13 @@ A responsive desktop CRUD management application emphasizing decoupled UI archit
 
 > **Computer Vision & Geometric Modeling** • *Python • OpenCV • MediaPipe Face Mesh*
 
-An experimental computer-vision prototype built to explore real-time facial landmark detection and temporal fatigue thresholds:
+An experimental computer-vision prototype exploring facial landmark extraction and geometric threshold analysis:
 
-* **468-Point Facial Mesh:** Utilizes MediaPipe to extract 3D facial coordinate landmarks in real time.
-* **Eye Aspect Ratio (EAR):** Computes Euclidean distances between eyelid landmarks to identify sustained blinks and micro-sleep events.
-* **Mouth Aspect Ratio (MAR):** Measures lip displacement vectors to detect repetitive or prolonged yawning behavior.
+* **468-Point Facial Mesh:** Utilizes MediaPipe Face Mesh to extract normalized facial coordinate landmarks from live webcam frames.
+* **Frame-Level Eye Aspect Ratio (EAR):** Computes the Euclidean distance ratio across eye landmark pairs; when the instantaneous EAR falls below a configurable threshold (default `0.25`), the prototype renders an on-screen `"DROWSY!"` visual warning.
+* **Frame-Level Mouth Aspect Ratio (MAR):** Computes the Euclidean vertical-to-horizontal lip landmark ratio; when instantaneous MAR exceeds the threshold (default `0.5`), it overlays a `"YAWNING!"` visual warning.
 
-*Note: Developed as an experimental educational prototype to explore facial topology algorithms; not intended as a certified automotive safety device.*
+*Note: Developed strictly as an experimental educational prototype for frame-level geometric landmark analysis without temporal state tracking, blink duration counters, or validated automotive safety certification.*
 
 <p align="left">
   <a href="https://github.com/sars-23/real-time-drowsiness-detection"><b>📦 GitHub Source Repository</b></a>
@@ -161,7 +163,11 @@ An experimental computer-vision prototype built to explore real-time facial land
 </picture>
 
 <div align="center">
-  <img src="https://skillicons.dev/icons?i=java,python,cpp,ts,js,spring,react,postgres,mysql,docker,maven,git,github,vscode&theme=dark" alt="Technical Arsenal Icons" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=java,python,cpp,ts,js,spring,react,postgres,mysql,docker,maven,git,github,vscode&theme=dark">
+    <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=java,python,cpp,ts,js,spring,react,postgres,mysql,docker,maven,git,github,vscode&theme=light">
+    <img src="https://skillicons.dev/icons?i=java,python,cpp,ts,js,spring,react,postgres,mysql,docker,maven,git,github,vscode&theme=dark" alt="Technical Arsenal Icons" />
+  </picture>
 </div>
 
 <br>
@@ -171,7 +177,7 @@ An experimental computer-vision prototype built to explore real-time facial land
 | **Languages** | Java (21 LTS), Python, C++, TypeScript, JavaScript, SQL |
 | **Backend &amp; Runtimes** | Spring Boot 3, Spring MVC, REST APIs, WebSockets, AudioWorklet Streams |
 | **Frontend &amp; UI** | React 19, TypeScript, HTML5, CSS3, Tailwind CSS, Java Swing |
-| **Databases &amp; Storage** | PostgreSQL, MySQL, B-tree Inverted Indexing, In-Memory Caching |
+| **Databases &amp; Storage** | PostgreSQL (B-tree Indexing), MySQL, In-Memory Storage (`LinkedHashMap`) |
 | **Tools &amp; Infrastructure** | Git, GitHub, Docker, Apache Maven, VS Code, FFmpeg, Render |
 
 ---
@@ -196,15 +202,27 @@ An experimental computer-vision prototype built to explore real-time facial land
 </picture>
 
 <div align="center">
-  <img src="https://github-readme-stats-anuraghazra1.vercel.app/api?username=sars-23&show_icons=true&bg_color=0D1117&title_color=F59E0B&icon_color=38BDF8&text_color=94A3B8&border_color=30363D" alt="Saransh's GitHub Stats" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-anuraghazra1.vercel.app/api?username=sars-23&show_icons=true&bg_color=0D1117&title_color=F59E0B&icon_color=38BDF8&text_color=94A3B8&border_color=30363D">
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-anuraghazra1.vercel.app/api?username=sars-23&show_icons=true&bg_color=F8FAFC&title_color=D97706&icon_color=0284C7&text_color=475569&border_color=E2E8F0">
+    <img src="https://github-readme-stats-anuraghazra1.vercel.app/api?username=sars-23&show_icons=true&bg_color=0D1117&title_color=F59E0B&icon_color=38BDF8&text_color=94A3B8&border_color=30363D" alt="Saransh's GitHub Stats" />
+  </picture>
   &nbsp;&nbsp;
-  <img src="https://github-readme-stats-anuraghazra1.vercel.app/api/top-langs/?username=sars-23&layout=compact&bg_color=0D1117&title_color=F59E0B&text_color=94A3B8&border_color=30363D" alt="Top Languages" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-anuraghazra1.vercel.app/api/top-langs/?username=sars-23&layout=compact&bg_color=0D1117&title_color=F59E0B&text_color=94A3B8&border_color=30363D">
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-anuraghazra1.vercel.app/api/top-langs/?username=sars-23&layout=compact&bg_color=F8FAFC&title_color=D97706&text_color=475569&border_color=E2E8F0">
+    <img src="https://github-readme-stats-anuraghazra1.vercel.app/api/top-langs/?username=sars-23&layout=compact&bg_color=0D1117&title_color=F59E0B&text_color=94A3B8&border_color=30363D" alt="Top Languages" />
+  </picture>
 </div>
 
 <br>
 
 <div align="center">
-  <img src="https://streak-stats.demolab.com?user=sars-23&theme=dark&background=0D1117&border=30363D&stroke=F59E0B&ring=F59E0B&fire=F59E0B&currStreakLabel=F59E0B&sideLabels=94A3B8&dates=64748B" alt="GitHub Contribution Streak" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=sars-23&theme=dark&background=0D1117&border=30363D&stroke=F59E0B&ring=F59E0B&fire=F59E0B&currStreakLabel=F59E0B&sideLabels=94A3B8&dates=64748B">
+    <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com?user=sars-23&background=F8FAFC&border=E2E8F0&stroke=D97706&ring=D97706&fire=D97706&currStreakLabel=D97706&currStreakNum=0F172A&sideLabels=475569&sideNums=0F172A&dates=64748B">
+    <img src="https://streak-stats.demolab.com?user=sars-23&theme=dark&background=0D1117&border=30363D&stroke=F59E0B&ring=F59E0B&fire=F59E0B&currStreakLabel=F59E0B&sideLabels=94A3B8&dates=64748B" alt="GitHub Contribution Streak" />
+  </picture>
 </div>
 
 ---
